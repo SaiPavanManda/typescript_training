@@ -1,0 +1,15 @@
+.header {
+    display:flex;
+    justify-content: flex-end;
+    margin: 10px;
+}
+.list {
+    list-style: none;
+}
+.list-item {
+    display: inline;
+    padding: 10px;
+}
+a {
+    text-decoration: none;
+}

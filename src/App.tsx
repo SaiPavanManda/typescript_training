@@ -1,7 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  useHistory
+} from "react-router-dom";
+import Header from './components/header';
+import About from './components/about';
+import Users from './components/users';
+import Home from './components/home';
+import Topics from './components/topics';
 
 function App(): JSX.Element {
+  let history = useHistory();
   let  isDone: boolean = false;
   let  name: string = 'sai';
   let num: number = 20;
@@ -58,22 +71,19 @@ function App(): JSX.Element {
 
   // Variables use const whereas properties use readonly
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header></Header>
+      <Switch>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/topics" render={({match}) => match ?  <Topics />: <div>No match{console.log(match)}</div>} />
+          <Route exact path="/">
+            <Home />
+          </Route>
+        </Switch>
+    </Router>
+    
   );
 }
 
